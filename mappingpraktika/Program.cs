@@ -31,7 +31,25 @@ namespace mappingpraktika
              {
                 Console.WriteLine(dto.Year + " " + dto.Name + " " + dto.Title + " " + dto.Description);
             }
+            Console.WriteLine("----------[extra]------------");
+            var mapper = Program.InitializeAutoMapper();
+
+            var empdto2 = mapper.Map<auto, autoDto>(bmw);
+
+            Console.WriteLine(empdto2.Year + " " + empdto2.Name + " " + empdto2.Title + " " + empdto2.Description);
+
+        }
+        public static Mapper InitializeAutoMapper()
+        {
             
+            var config = new MapperConfiguration(cfg =>
+            {
+                
+                cfg.CreateMap<auto, autoDto>();
+            });
+            
+            var map = new Mapper(config);
+            return map;
         }
     }
     public class auto
